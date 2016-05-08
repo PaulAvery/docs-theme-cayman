@@ -1,6 +1,6 @@
 {
   "name": "@paulavery/docs-theme-cayman",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Modified version of cayman theme for @paulavery/docs",
   "license": "BSD-3-Clause",
   "main": "theme.js",
