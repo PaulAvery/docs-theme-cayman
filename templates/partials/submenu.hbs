@@ -1,0 +1,20 @@
+{{#neq link ''}}
+	<nav class="sub-menu">
+		<ul class="category-list">
+			{{#top}}
+				{{#each children}}
+					<li class="category {{#eq link ../../page.link}}active{{/eq}}">
+						<div class="dot"></div>
+						<a href="{{up}}{{link}}">{{name}}</a>
+					</li>
+					{{#each children}}
+						<li class="page child {{#eq link ../../../page.link}}active{{/eq}}">
+							<div class="dot"></div>
+							<a href="{{up}}{{link}}">{{name}}</a>
+						</li>
+					{{/each}}
+				{{/each}}
+			{{/top}}
+		</ul>
+	</nav>
+{{/neq}}

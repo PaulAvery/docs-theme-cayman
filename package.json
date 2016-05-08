@@ -1,0 +1,19 @@
+{
+  "name": "@paulavery/docs-theme-cayman",
+  "version": "0.0.0",
+  "description": "Modified version of cayman theme for @paulavery/docs",
+  "license": "BSD-3-Clause",
+  "main": "theme.js",
+  "author": {
+    "name": "Florian Albertz",
+    "url": "https://github.com/PaulAvery/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PaulAvery/docs-theme-cayman.git"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "slug": "^0.9.1"
+  }
+}

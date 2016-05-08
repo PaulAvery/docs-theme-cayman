@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>{{#if page.name}}{{page.name}}{{else}}{{pkg.name}}{{/if}}</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="{{up}}assets/css/deps/normalize.css">
+	<link rel="stylesheet" href="{{up}}assets/css/deps/cayman.css">
+	<link rel="stylesheet" href="{{up}}assets/css/highlight.css">
+	<link rel="stylesheet" href="{{up}}assets/css/header.css">
+	<link rel="stylesheet" href="{{up}}assets/css/menu.css">
+	<link rel="stylesheet" href="{{up}}assets/css/docs.css">
+
+	<script src="{{up}}assets/js/collapse.js"></script>
+	<script src="{{up}}assets/ js/reload.js"></script>
+</head>
+<body class="collapsed">
+	<div class="page-wrap">
+		<section class="page-header placeholder">
+			{{>header}}
+		</section>
+		<section class="page-header">
+			{{>header}}
+		</section>
+		<div class="main-column">
+			{{>submenu}}
+			<section class="main-content">
+				{{{page.content}}}
+			</section>
+		</div>
+	</div>
+	<footer class="site-footer">
+		{{>credits}}
+	</footer>
+</body>
+</html>
