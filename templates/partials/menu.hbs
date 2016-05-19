@@ -3,7 +3,7 @@
 		<li><a href="./{{up}}" {{#eq page.link ''}}class="active"{{/eq}}>Introduction</a></li>
 		{{#top}}
 			{{#each children}}
-				<li><a href="{{up}}{{link}}" {{#eq link ../../page.link }}class="active"{{/eq}}>{{name}}</a></li>
+				<li><a href="{{up}}{{link}}" {{#begins ../../page.link link}}class="active"{{/begins}}>{{name}}</a></li>
 			{{/each}}
 		{{/top}}
 	</ul>
