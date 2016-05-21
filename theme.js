@@ -7,13 +7,20 @@ const slug = require('slug');
 /* Map a treelevel to a url */
 exports.mapUrl = level => {
 	let url = '';
-	let current = level;
 
+	/* Redirect to next level down if we are empty */
+	if (level.content === '' && level.children.length > 0) {
+		return exports.mapUrl(level.children[0]);
+	}
+
+	/* Create slugified path */
+	let current = level;
 	while(current.parent) {
-		url = slug(current.name) + '/' + url;
+		url = slug(current.name).toLowerCase() + '/' + url;
 		current = current.parent;
 	}
 
+	/* If we have no children, add the html extension */
 	if(level.children.length === 0) {
 		url = url.substr(0, url.length - 1) + '.html';
 	}
@@ -23,13 +30,13 @@ exports.mapUrl = level => {
 
 /* Map a treelevel to a target file */
 exports.mapFile = level => {
-	let url = exports.mapUrl(level);
+	let pth = exports.mapUrl(level);
 
 	if(level.children.length > 0) {
-		url += 'index.html';
+		pth += 'index.html';
 	}
 
-	return url;
+	return pth;
 };
 
 /*
@@ -43,6 +50,30 @@ exports.assignHighlighters = () => {};
  * Can be overriden by other theme.
  */
 exports.assignMarkdown = () => {};
+
+/*
+ * Build the menu structure from a level
+ */
+function buildSubmenu(level) {
+	let menu = [];
+
+	/* Move up to second level */
+	let current = level;
+	while(current.parent && current.parent.parent) {
+		current = current.parent;
+	}
+
+	if(current.content === '') {
+		/* Add children if toplevel is empty */
+		menu.push(...current.children);
+	} else {
+		/* Add toplevel if not */
+		menu.push(current);
+	}
+
+	/* Return an empty menu if we have only a single entry without children or are toplevel*/
+	return (!current.parent || (menu.length === 1 && menu[0].children.length === 0)) ? [] : menu;
+}
 
 /* Compile the parsed tree into a file structure */
 exports.compile = (root, from, to) => {
@@ -72,6 +103,7 @@ exports.compile = (root, from, to) => {
 		let options = {
 			pkg: root.pkg,
 			page: tree,
+			submenu: buildSubmenu(tree),
 			toplevel: root.tree
 		};
 
