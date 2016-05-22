@@ -21,7 +21,7 @@ exports.mapUrl = level => {
 	}
 
 	/* If we have no children, add the html extension */
-	if(level.children.length === 0) {
+	if(level.children.length === 0 && level.parent) {
 		url = url.substr(0, url.length - 1) + '.html';
 	}
 
@@ -32,7 +32,7 @@ exports.mapUrl = level => {
 exports.mapFile = level => {
 	let pth = exports.mapUrl(level);
 
-	if(level.children.length > 0) {
+	if(level.children.length > 0 || !level.parent) {
 		pth += 'index.html';
 	}
 
